@@ -6,7 +6,7 @@ const app = express();
 app.listen(5100);
 //Filesystem blir nu promises
 const fs = require('fs/promises');
-const { PassThrough } = require('stream');
+//const { PassThrough } = require('stream');
 
 app
   //Format som servern kan ta emot och skicka
@@ -76,6 +76,38 @@ app.post('/', async(req, res) => {
         res.status(500).send({ error });
     }
 })
+//Funktion för att ta bort varor. Använder express deletemetod.
+app.delete('/varor/:id', async (req, res) =>{
+  try {
+  const parseFile = await fs.readFile('varor.json');
+  const parsedVaror = JSON.parse(parseFile);
+  //console.log(parsedVaror)
+  const id = req.params.id;
+  //Samtliga objekt i JSONfilen som inte har det id:t som försöks tas bort kommer läggas in i en ny variabel.
+  const uppdateradeVaror = parsedVaror.filter(function (parsedVaror) {
+    return parsedVaror.id !== id;
+  });
+  
+  console.log(uppdateradeVaror);
+  //En loop vilken kommer ifrån postanropet kommer lägga JSONobjekten i ordning.
+  for (let index = 0; index < uppdateradeVaror.length; index++) {
+    //console.log(parsedVaror[index].id);
+    if (uppdateradeVaror[index].id != index+1){
+      uppdateradeVaror[index].id = '' + (index + 1) + ''
+    }
+    
+  }
+  console.log(uppdateradeVaror);
+  //JSONlistan uppdateras i backend.
+  await fs.writeFile('./varor.json', JSON.stringify(uppdateradeVaror));
+        res.send(uppdateradeVaror);
+  
+    
+  } 
+  catch (error) {
+    
+  }
+});
 /*function idCheck(){
   PassThrough
 }*/
