@@ -61,7 +61,7 @@ app.post('/', async(req, res) => {
             
           }
         }
-        console.log(parsedVaror);
+        //console.log(parsedVaror);
         //Tilldelar ett nytt id till nya JSON-objektet, denna bygger vidare på sorteringen som gjorts tidigare
         const laggaInNyVara = { id:'' + (parsedVaror.length + 1) + '', ...nyVara };
         // Stort frågetecken

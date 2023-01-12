@@ -17,7 +17,7 @@
 //formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
 //formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
 //Eventlyssnare till submitknappen på formuläret
-//formLaggaInVaror.addEventListener('submit', formSubmit);
+formLaggaInVaror.addEventListener('submit', pressedSubmit);
 
 
 const todoListElement = document.getElementById('todoList');
@@ -28,7 +28,7 @@ let formProducerValid = true;
 let formImageLinkValid = true;
 //let tasksToChange;
 
-const api = new Api('http://localhost:5100/varor');
+const api = new Api('http://localhost:5100/');
 
 //HÄR SKAPAR VI ALLA VALIDERINGSFUNKTIONER!!
 
@@ -40,6 +40,8 @@ function pressedSubmit(e) {
     //LÄGG IN SAMTLIGA VALIDERINGSFUNKTIONER HÄR!!!!!!
 
     saveGoods();
+    console.log('nu körs saveGoods')
+    e.preventDefault();
 }
 
 function saveGoods() {
@@ -51,17 +53,17 @@ function saveGoods() {
         Tillverkare: formLaggaInVaror.formProducer,
         Bild: formLaggaInVaror.formImageLink
     };
-}
-//Denna använder apiets createmetod
-api.create(goods).then((goods) => {
+
+    //Denna använder apiets createmetod
+    api.create(goods).then((goods) => {
     console.log('Hej från script/api.create')
     //Ser till att vi har något att hämta
     if (goods){
         //Visar alla varor
         showGoods();
     }
-});
-
+    });
+}
 //Funktion som visar alla varor.
 function showGoods(){
     console.log(hejsan);

@@ -1,6 +1,6 @@
 
 //Skapandet av en apiklass. Den kommer ta emot olika förfrågningar från script.js
-class Api {
+class Api{
 
     //Medlemsvariabeln url som lagrar grund-urlen till servern
     url = '';
@@ -15,9 +15,10 @@ class Api {
     //Skapandet av de CRUD-metoder som kommer att användas.
     
     //Nedan skapas crudmetoden create
-    create(data){
+    create(goods){
         //Data ska endast skickas via httprequests i stringformat. Därför görs en kovertering nedan.
-        const JSONData = JSON.stringify(data);
+        const JSONData = JSON.stringify(goods);
+        console.log(JSONData)
 
         console.log(`Sending ${JSONData} to ${this.url}`)
 
