@@ -12,23 +12,31 @@
         <section class="hejsan w-2/6 bg-slate-100 m-auto min-h-screen">
             <div class="divClass text-center">
                 <h1 class="headerClass m-auto">Nedanför ska innehållet finnas.
-                  <section id="itemContainer">
+                    <section>
+                        <div class="hej1 bg-blue-300 w-1/2"><h1>Div 1</h1>
+                        </div>
+                        <div class="hej2 bg-green-300">Div 2</div>
+                    </section>
+                    <section><!---Här ska den dynamiska listan med varor finnas-->
+
+                    </section>
+                  <section id="formContainer">
                     <!--Gör en grid för dessa där varje barn har en egen rad -->
                     <form>
                         <!--- ---->
                         <section>
                             <label for="formArticleName">Artikelnamn:</label>
-                            <input type="text" id="formArticleName" name="fname">
+                            <input type="text" id="formArticleName" name="formArticleName" >
                         </section>
                         <section>
                             <label for="formPrice">Pris:</label>
-                            <input type="text" id="formPrice" name="lname">
+                            <input type="text" id="formPrice" name="formPrice">
                         </section>    
                             <label for="formProducer">Tillverkare:</label>
-                            <input type="text" id="formProducer" name="lname">
+                            <input type="text" id="formProducer" name="formProducer">
                         <section>
                             <label for="formImageLink">Bildlänk:</label>
-                            <input type="text" id="formImageLink" name="lname">
+                            <input type="text" id="formImageLink" name="formImageLink">
                         </section>
                         <section>     
                             <input type="submit" value="Submit" style="border-style: solid;border-width: 2px;border-color:black">
