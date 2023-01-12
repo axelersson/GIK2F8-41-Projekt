@@ -8,10 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-    <main id="root" class="bg-slate-50">
+    <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400">
+        <h1 class="headerClass m-auto pt-20 pb-5 text-center text-5xl">Lista på produkter</h1>
         <section class="hejsan w-2/6 bg-slate-100 m-auto min-h-screen">
-            <div class="divClass text-center">
-                <h1 class="headerClass m-auto">Nedanför ska innehållet finnas.
                     <section class="divContainer">
                         <div class="div1 bg-blue-300 w-1/2 float-left rounded border-black border-2"><h1>Div 1</h1>
                         </div>
@@ -25,27 +24,29 @@
                     <form id="formLaggaInVaror" 
                           name="formLaggaInVaror">
                         <!--- ---->
-                        <section>
+                        <section class="bg-orange-50">
                             <label for="formArticleName">Artikelnamn:</label>
                             <input type="text" id="formArticleName" name="formArticleName" >
                         </section>
-                        <section>
+                        <section class="bg-orange-50">
                             <label for="formPrice">Pris:</label>
                             <input type="text" id="formPrice" name="formPrice">
-                        </section>    
+                        </section>  
+                        <section class="bg-orange-50">
                             <label for="formProducer">Tillverkare:</label>
                             <input type="text" id="formProducer" name="formProducer">
-                        <section>
+                        </section>  
+                        <section class="bg-orange-50">
                             <label for="formImageLink">Bildlänk:</label>
                             <input type="text" id="formImageLink" name="formImageLink">
                         </section>
-                        <button name="formSubmit" type="submit" style="border-style: solid;border-width: 2px;border-color:black">
-                        </button>
+                        <div class="align-center bg-orange-50">
+                            <button name="formSubmit" type="submit" style="border-style: solid;padding:0.1rem 0.2rem;border-radius:0.25rem ;border-width: 2px ;border-color:black; display: block; margin: 0 auto;background-color:darkgrey ;">fuckin send boi
+                            </button>
+                        </div>
                       </form>
                   </section>
-                </h1>
-            </div>
-        </section>
+            </section>
     </main>
 </body>
 <script src="script.js"></script>
