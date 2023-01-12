@@ -1,17 +1,21 @@
 //Vi behöver börja bygga upp en scriptfil där vi har eventlistnare till form, och sätt att läsa av om fält är ifyllda.
 //Kanske någon flik som gör att man kan välja mellan att se formuläret och varorna som finns.
  
-
-todoForm.title.addEventListener('keyup', (e) => validateField(e.target));
-todoForm.title.addEventListener('blur', (e) => validateField(e.target));
-
-todoForm.description.addEventListener('input', (e) => validateField(e.target));
-todoForm.description.addEventListener('blur', (e) => validateField(e.target));
-
-todoForm.dueDate.addEventListener('input', (e) => validateField(e.target));
-todoForm.dueDate.addEventListener('blur', (e) => validateField(e.target));
-
-todoForm.addEventListener('submit', onSubmit);
+//Eventlyssnare för validering av fälten i formulär
+//Validering för namn
+formLaggaInVaror.formArticleName.addEventListener('keyup', (e) => validateName(e.target));
+formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
+//Validering för pris
+formLaggaInVaror.formPrice.addEventListener('input', (e) => validateField(e.target));
+formLaggaInVaror.formPrice.addEventListener('blur', (e) => validateField(e.target));
+//Validering för producent
+formLaggaInVaror.formProducer.addEventListener('input', (e) => validateField(e.target));
+formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateField(e.target));
+//Validering för bildlänk
+formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+//Eventlyssnare till submitknappen på formuläret
+formLaggaInVaror.addEventListener('submit', formSubmit);
 
 
 const todoListElement = document.getElementById('todoList');

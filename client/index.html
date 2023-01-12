@@ -22,7 +22,8 @@
                     </section>
                   <section id="formContainer bg-blue-500 opacity-10">
                     <!--Gör en grid för dessa där varje barn har en egen rad -->
-                    <form>
+                    <form id="formLaggaInVaror" 
+                          name="formLaggaInVaror">
                         <!--- ---->
                         <section>
                             <label for="formArticleName">Artikelnamn:</label>
@@ -38,9 +39,8 @@
                             <label for="formImageLink">Bildlänk:</label>
                             <input type="text" id="formImageLink" name="formImageLink">
                         </section>
-                        <section>     
-                            <input type="submit" value="Submit" style="border-style: solid;border-width: 2px;border-color:black">
-                        </section>
+                        <button name="formSubmit" type="submit" style="border-style: solid;border-width: 2px;border-color:black">
+                        </button>
                       </form>
                   </section>
                 </h1>
