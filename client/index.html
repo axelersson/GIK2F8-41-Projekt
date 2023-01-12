@@ -8,39 +8,39 @@
     <title>Document</title>
 </head>
 <body>
-    <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400">
+    <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400 min-h-screen">
         <h1 class="headerClass m-auto pt-20 pb-5 text-center text-5xl">Lista på produkter</h1>
-        <section class="hejsan w-2/6 bg-slate-100 m-auto min-h-screen">
-                    <section class="divContainer">
-                        <div class="div1 bg-blue-300 w-1/2 float-left rounded border-black border-2"><h1>Div 1</h1>
+        <section class="hejsan w-2/6 bg-slate-100 m-auto border-4 rounded">
+                    <section class="divContainer pb-7 bg-orange-50">
+                        <div class="div1 bg-blue-300 w-1/2 float-left rounded border-black border-2 text-center"><h1>Div 1</h1>
                         </div>
-                        <div class="div2 bg-green-300 w-1/2 float-left rounded border-black border-2">Div 2</div>
+                        <div class="div2 bg-green-300 w-1/2 rounded float-left border-black border-2 text-center">Div 2</div>
                     </section>
                     <section><!---Här ska den dynamiska listan med varor finnas-->
 
                     </section>
-                  <section id="formContainer">
+                  <section id="formContainer p-2">
                     <!--Gör en grid för dessa där varje barn har en egen rad -->
                     <form id="formLaggaInVaror" 
                           name="formLaggaInVaror">
                         <!--- ---->
-                        <section class="bg-orange-50">
+                        <section class="bg-orange-50 p-2">
                             <label for="formArticleName">Artikelnamn:</label>
                             <input type="text" id="formArticleName" name="formArticleName" >
                         </section>
-                        <section class="bg-orange-50">
+                        <section class="bg-orange-50 p-2">
                             <label for="formPrice">Pris:</label>
                             <input type="text" id="formPrice" name="formPrice">
                         </section>  
-                        <section class="bg-orange-50">
+                        <section class="bg-orange-50 p-2">
                             <label for="formProducer">Tillverkare:</label>
                             <input type="text" id="formProducer" name="formProducer">
                         </section>  
-                        <section class="bg-orange-50">
+                        <section class="bg-orange-50 p-2">
                             <label for="formImageLink">Bildlänk:</label>
                             <input type="text" id="formImageLink" name="formImageLink">
                         </section>
-                        <div class="align-center bg-orange-50">
+                        <div class="align-center bg-orange-50 p-2">
                             <button name="formSubmit" type="submit" style="border-style: solid;padding:0.1rem 0.2rem;border-radius:0.25rem ;border-width: 2px ;border-color:black; display: block; margin: 0 auto;background-color:darkgrey ;">fuckin send boi
                             </button>
                         </div>
