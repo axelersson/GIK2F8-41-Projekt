@@ -37,5 +37,19 @@ class Api {
             .catch((err) => console.log(err))
         );
     }
-
+    //getAllmetod, vi behöver ingen funktionalitet för att hämta enstaka objekt
+    getAll() {
+        return fetch(this.url)
+        .then((result) => result.json())
+        .then((data) => data)
+        .catch((err) => console.log(err));
+    }
+    //Varje vara******** UPPDATERAS OM ÄNDRING!!**** tilldelas ett unikt id i backend och därför kan vi ta bort baserat på detta.
+    remove(id) {
+        return fetch(`${this.url}/${id}`, {
+            method: 'DELETE'
+          })
+            .then((result) => result)
+            .catch((err) => console.log(err));
+        }
 }
