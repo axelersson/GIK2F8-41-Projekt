@@ -54,6 +54,7 @@ function saveGoods() {
 }
 //Denna använder apiets createmetod
 api.create(goods).then((goods) => {
+    console.log('Hej från script/api.create')
     //Ser till att vi har något att hämta
     if (goods){
         //Visar alla varor
