@@ -36,7 +36,7 @@ app.get('/', async (req, res) => {
 
 app.post('/', async(req, res) => {
     try {
-        console.log('hej')
+        //console.log('hej')
 
         //Request som skickas från frontend ska skickas i JSON-format så att det kan läggas till här bland de andra varorna.
         const nyVara = req.body;

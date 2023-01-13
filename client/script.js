@@ -50,34 +50,59 @@ function pressedSubmit(e) {
 function saveGoods() {
     //Denna konverterar input i formuläret till rätt JSONformat för att kunna skickas och
     //packas upp på rätt sätt i backend.
+    //preventDefault();
     const goods ={
         namn: formLaggaInVaror.formArticleName.value,
         pris: formLaggaInVaror.formPrice.value,
         Tillverkare: formLaggaInVaror.formProducer.value,
         Bild: formLaggaInVaror.formImageLink.value
     };
-    console.log(goods)
+
+    //tilldelaText = document.getElementById('resRutan');
+    //console.log(tilldelaText + 'här är tilldelatext')
+    //tilldelaText.insertAdjacentHTML('beforeend', 'goods')
 
     //Denna använder apiets createmetod
     api.create(goods).then((goods) => {
-    console.log('Hej från script/api.create')
+    console.log('hejsan')
+    console.log(goods)
+
     //Ser till att vi har något att hämta
     if (goods){
         //Visar alla varor
-        showGoods();
+        console.log('hejsan')
+        //showGoodsInventory();
     }
+    
     });
+
+    //innerHTML = JSON.stringify(goods);
     
 }
 //Funktion som visar alla varor.
-function showGoods(){
+/*
+function showGoodsInventory(){
 
     console.log('rendering');
     api.getAll().then((goods) => {
 
-        elementAfVaruLista.innerHTML = '';
+        //elementAfVaruLista.innerHTML = '';
         goods.forEach((goods) => { 
-            todoListElement.insertAdjacentHTML('beforeend', showGoods(goods));
+            //hamtadGoods = goods;
+            //parsedGoods = JSON.parse(hamtadGoods)
+            //console.log(parsedGoods);
+            //console.log(goods + 'här är goods')
+            elementAfVaruLista.insertAdjacentHTML('beforeend', showGoods(goods));
         });
     });
-}
+}*/
+/*
+function showGoods({id, namn, pris, Tillverkare, Bild}){
+    let html = `
+    <li id="elementAfVaruLista${id}` 
+    html += `<h3>${id, namn, pris, Tillverkare, Bild}</h3>
+      </li>;`
+
+      return html;
+  
+}*/
