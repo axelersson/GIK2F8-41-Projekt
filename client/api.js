@@ -18,7 +18,6 @@ class Api{
     create(goods){
         //Data ska endast skickas via httprequests i stringformat. Därför görs en kovertering nedan.
         const JSONData = JSON.stringify(goods);
-        console.log(JSONData)
 
         console.log(`Sending ${JSONData} to ${this.url}`)
 

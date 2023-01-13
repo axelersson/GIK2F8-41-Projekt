@@ -39,9 +39,10 @@ app.post('/', async(req, res) => {
         console.log('hej')
 
         //Request som skickas från frontend ska skickas i JSON-format så att det kan läggas till här bland de andra varorna.
-
         const nyVara = req.body;
-
+        //console.log(inkommenVara)
+        //const  = JSON.parse(inkommenVara)
+        //console.log(nyVara + 'här är nyVara')
         //Sparar ner samtliga varor i varor.json
         const parseFile = await fs.readFile('varor.json');
         //Konverterar varorna till rätt format.
@@ -54,16 +55,16 @@ app.post('/', async(req, res) => {
         //Om varor finns registrerade kommer dessa loopas igenom och id kommer tilldelas i succesiv ordning 
         else {
           for (let index = 0; index < parsedVaror.length; index++) {
-            console.log(parsedVaror[index].id);
+            //console.log(parsedVaror[index].id);
             if (parsedVaror[index].id != index+1){
-              parsedVaror[index].id = '' + (index + 1) + ''
+              parsedVaror[index].id = (index + 1)
             }
             
           }
         }
         //console.log(parsedVaror);
         //Tilldelar ett nytt id till nya JSON-objektet, denna bygger vidare på sorteringen som gjorts tidigare
-        const laggaInNyVara = { id:'' + (parsedVaror.length + 1) + '', ...nyVara };
+        const laggaInNyVara = { id:(parsedVaror.length + 1), ...nyVara };
         // Stort frågetecken
         const newList = parsedVaror ? [...parsedVaror, laggaInNyVara] : [laggaInNyVara];
 
