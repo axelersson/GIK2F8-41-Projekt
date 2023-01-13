@@ -71,7 +71,7 @@ function saveGoods() {
     if (goods){
         //Visar alla varor
         console.log('hejsan')
-        //showGoodsInventory();
+        showGoodsInventory();
     }
     
     });
@@ -80,29 +80,31 @@ function saveGoods() {
     
 }
 //Funktion som visar alla varor.
-/*
 function showGoodsInventory(){
 
     console.log('rendering');
     api.getAll().then((goods) => {
 
-        //elementAfVaruLista.innerHTML = '';
+        elementAfVaruLista.innerHTML = '';
         goods.forEach((goods) => { 
-            //hamtadGoods = goods;
+            //console.log(goods)
+            //hamtadGoods = goods
             //parsedGoods = JSON.parse(hamtadGoods)
             //console.log(parsedGoods);
-            //console.log(goods + 'här är goods')
+            console.log(goods + 'här är goods')
             elementAfVaruLista.insertAdjacentHTML('beforeend', showGoods(goods));
         });
     });
-}*/
-/*
+}
+
 function showGoods({id, namn, pris, Tillverkare, Bild}){
+    elementAfVaruLista.innerHTML = 'hejhej123';
+    console.log('hej från showGoods')
     let html = `
     <li id="elementAfVaruLista${id}` 
-    html += `<h3>${id, namn, pris, Tillverkare, Bild}</h3>
+    html += `<h3>hejsan${id, namn, pris, Tillverkare, Bild}</h3>
       </li>;`
 
       return html;
   
-}*/
+}
