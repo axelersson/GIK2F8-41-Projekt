@@ -26,6 +26,53 @@ formLaggaInVaror.addEventListener('submit', pressedSubmit);
 
 
 const elementAfVaruLista = document.getElementById('varuLista');
+const inlagdVaraRuta = document.getElementById('inlagdVaraRuta');
+
+const formContainer = document.getElementById('formContainer');
+
+const div1 = document.getElementById('clickableDiv1');
+const div2 = document.getElementById('clickableDiv2');
+
+div1.addEventListener('click', clickedDiv1);
+div2.addEventListener('click', clickedDiv2);
+
+function clickedDiv1 (){
+    //Visa rätt sektioner
+    formContainer.classList.add('visible')
+    formContainer.classList.remove('hidden')
+    elementAfVaruLista.classList.add('hidden')
+    
+    //Utseende för flikar
+    div1.classList.add("bg-slate-200");
+    div1.classList.remove("bg-zinc-400");
+    div2.classList.add("bg-zinc-400");
+    div2.classList.remove("bg-slate-200");
+
+     //Rätt hovereffekter
+    div1.classList.remove("hover:bg-slate-600");
+    div2.classList.add("hover:bg-slate-600");
+}
+function clickedDiv2 (){
+    //Visa rätt sektioner
+    inlagdVaraRuta.classList.add('hidden');
+    formContainer.classList.add('hidden')
+    elementAfVaruLista.classList.remove('hidden')
+    inlagdVaraRuta.classList.remove('visible');
+    inlagdVaraRuta.classList.add('hidden');
+    
+    //Rätt hovereffekter
+    div1.classList.add("hover:bg-slate-600");
+    div2.classList.remove("hover:bg-slate-600");
+
+    //Utseende för flikar
+    div1.classList.remove("bg-slate-200");
+    div1.classList.add("bg-zinc-400");
+    div2.classList.remove("bg-zinc-400");
+    div2.classList.add("bg-slate-200");
+
+    showGoodsInventory()
+}
+
 
 let formArticleNameValid = true;
 let formPriceValid = true;
@@ -57,54 +104,50 @@ function saveGoods() {
         Tillverkare: formLaggaInVaror.formProducer.value,
         Bild: formLaggaInVaror.formImageLink.value
     };
-
-    //tilldelaText = document.getElementById('resRutan');
-    //console.log(tilldelaText + 'här är tilldelatext')
-    //tilldelaText.insertAdjacentHTML('beforeend', 'goods')
-
     //Denna använder apiets createmetod
     api.create(goods).then((goods) => {
-    console.log('hejsan')
-    console.log(goods)
+    inlagdVaraRuta.classList.add('visible');
+    inlagdVaraRuta.classList.remove('hidden');
+    inlagdVaraRuta.innerHTML = '';
+    inlagdVaraRuta.insertAdjacentHTML('beforeend', showGoods(goods));
+    formLaggaInVaror.formArticleName.value = '';
+    formLaggaInVaror.formPrice.value = '';
+    formLaggaInVaror.formProducer.value = '';
+    formLaggaInVaror.formImageLink.value = '';
 
-    //Ser till att vi har något att hämta
-    if (goods){
-        //Visar alla varor
-        console.log('hejsan')
-        showGoodsInventory();
-    }
-    
     });
-
-    //innerHTML = JSON.stringify(goods);
     
 }
 //Funktion som visar alla varor.
-function showGoodsInventory(){
+function showGoodsInventory() {
 
     console.log('rendering');
     api.getAll().then((goods) => {
 
         elementAfVaruLista.innerHTML = '';
         goods.forEach((goods) => { 
-            //console.log(goods)
-            //hamtadGoods = goods
-            //parsedGoods = JSON.parse(hamtadGoods)
-            //console.log(parsedGoods);
-            console.log(goods + 'här är goods')
+            console.log(elementAfVaruLista + 'detta är element')
             elementAfVaruLista.insertAdjacentHTML('beforeend', showGoods(goods));
+
         });
     });
 }
 
 function showGoods({id, namn, pris, Tillverkare, Bild}){
-    elementAfVaruLista.innerHTML = 'hejhej123';
-    console.log('hej från showGoods')
-    let html = `
-    <li id="elementAfVaruLista${id}` 
-    html += `<h3>hejsan${id, namn, pris, Tillverkare, Bild}</h3>
-      </li>;`
+    let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
+    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    html += `<p>Bild:  </p>`
+    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`
+    html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
+    
+    html += `</li>`;
 
-      return html;
+    return html;
   
+}
+
+function deleteVara(id) {
+    api.remove(id).then(() => {
+        showGoodsInventory()
+    });
 }

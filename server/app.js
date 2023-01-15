@@ -82,11 +82,14 @@ app.delete('/varor/:id', async (req, res) =>{
   try {
   const parseFile = await fs.readFile('varor.json');
   const parsedVaror = JSON.parse(parseFile);
+
+
   //console.log(parsedVaror)
   const id = req.params.id;
+
   //Samtliga objekt i JSONfilen som inte har det id:t som försöks tas bort kommer läggas in i en ny variabel.
-  const uppdateradeVaror = parsedVaror.filter(function (parsedVaror) {
-    return parsedVaror.id !== id;
+  const uppdateradeVaror = parsedVaror.filter((parsedVaror) => {
+    return parsedVaror.id != id;
   });
   
   console.log(uppdateradeVaror);
@@ -94,11 +97,11 @@ app.delete('/varor/:id', async (req, res) =>{
   for (let index = 0; index < uppdateradeVaror.length; index++) {
     //console.log(parsedVaror[index].id);
     if (uppdateradeVaror[index].id != index+1){
-      uppdateradeVaror[index].id = '' + (index + 1) + ''
+      uppdateradeVaror[index].id = (index + 1)
     }
     
   }
-  console.log(uppdateradeVaror);
+  //console.log(uppdateradeVaror);
   //JSONlistan uppdateras i backend.
   await fs.writeFile('./varor.json', JSON.stringify(uppdateradeVaror));
         res.send(uppdateradeVaror);

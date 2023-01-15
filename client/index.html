@@ -8,39 +8,44 @@
     <title>Document</title>
 </head>
 <body>
-    <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400 min-h-screen">
+    <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400 h-fit min-h-screen">
         <h1 class="headerClass m-auto pt-20 pb-5 text-center text-5xl">Lista på produkter</h1>
-        <section class="hejsan w-2/6 bg-slate-100 m-auto border-4 rounded">
-                    <section class="divContainer pb-7 bg-orange-50">
-                        <div class="div1 bg-blue-300 w-1/2 float-left rounded border-black border-2 text-center"><h1>Div 1</h1>
+        <section class="w-2/6 m-auto bg-transparent h-max">
+                <div class="flex">
+                    <section class="divContainer bg-transparent mt-auto h-full w-full">
+                        <div id="clickableDiv1" class=" bg-slate-200 rounded-tr-lg text-center h-full"><h1>Lägg in ny vara</h1>
                         </div>
-                        <div class="div2 bg-green-300 w-1/2 rounded float-left border-black border-2 text-center">Div 2</div>
+                        
                     </section>
-                    <section><!---Här ska den dynamiska listan med varor finnas-->
+                    <section class="divContainer bg-transparent mt-auto h-full w-full">
+                        <div id="clickableDiv2" class="hover:bg-slate-600 div2 bg-zinc-400 rounded-tl-lg text-center h-full">Visa nuvarande sortiment</div>
+                    </section>
+                </div>
+                    <section class="hidden"><!---Här ska den dynamiska listan med varor finnas-->
 
                     </section>
-                  <section id="formContainer p-2">
+                  <section id="formContainer" class="col-span-3 bg-slate-200 grid-cols-2 grid-rows-1">
                     <!--Gör en grid för dessa där varje barn har en egen rad -->
                     <form id="formLaggaInVaror" 
                           name="formLaggaInVaror">
                         <!--- ---->
-                        <section class="bg-orange-50 p-2">
+                        <section class="bg-transparent p-2">
                             <label for="formArticleName">Artikelnamn:</label>
                             <input type="text" id="formArticleName" name="formArticleName" >
                         </section>
-                        <section class="bg-orange-50 p-2">
+                        <section class="p-2">
                             <label for="formPrice">Pris:</label>
                             <input type="text" id="formPrice" name="formPrice">
                         </section>  
-                        <section class="bg-orange-50 p-2">
+                        <section class="p-2">
                             <label for="formProducer">Tillverkare:</label>
                             <input type="text" id="formProducer" name="formProducer">
                         </section>  
-                        <section class="bg-orange-50 p-2">
+                        <section class="p-2">
                             <label for="formImageLink">Bildlänk:</label>
                             <input type="text" id="formImageLink" name="formImageLink">
                         </section>
-                        <div class="align-center bg-orange-50 p-2">
+                        <div class="align-center bg-transparent p-2">
                             <button name="formSubmit" 
                             type="submit" 
                             style="border-style: solid;padding:0.1rem 0.2rem;border-radius:0.25rem ;border-width: 2px ;border-color:black; display: block; margin: 0 auto;background-color:darkgrey ;">Lägg till
@@ -48,14 +53,13 @@
                         </div>
                       </form>
                   </section>
-            </section>
-            <section id="varuSektion" class="m-auto w-2/6">
-                <h2 class="m-auto w-2/6">Inlagd vara:</h2>
+                </section>
+            <section id="varuSektion" class="m-auto w-2/6 h-fit col-span-2 h-max bg-slate-200">                
                 <ul id="varuLista" class="m-auto">
                     <!--Här kommer vi lägga in den dynamiskt genererade varulistan-->
                 </ul>
             </section>
-            <div id ="resRutan" class="h-32 bg-blue-300 w-2/6 m-auto"></div>
+            <div id ="inlagdVaraRuta" class="h-fit w-2/6 bg-slate-200 mx-auto hidden"><h2 class="m-auto w-2/6">Inlagd vara:</h2></div>
     </main>
     <script src="Api.js"></script>
     <script src="script.js"></script>
