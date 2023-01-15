@@ -51,7 +51,7 @@ app.post('/varor', async(req, res) => {
         //Om varor finns registrerade kommer dessa loopas igenom och id kommer tilldelas i succesiv ordning 
         else {
           for (let index = 0; index < parsedVaror.length; index++) {
-            //console.log(parsedVaror[index].id);
+
             if (parsedVaror[index].id != index+1){
               parsedVaror[index].id = (index + 1)
             }

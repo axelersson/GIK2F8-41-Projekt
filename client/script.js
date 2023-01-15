@@ -35,7 +35,6 @@ formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateProducer(e
 //Eventlyssnare till submitknappen på formuläret
 formLaggaInVaror.addEventListener('submit', pressedSubmit, validatePris(formLaggaInVaror.formPrice));
 
-//
 const elementAfVaruLista = document.getElementById('varuLista');
 const inlagdVaraRuta = document.getElementById('inlagdVaraRuta');
 const inlagdVaraHeader = document.getElementById('inlagdVaraHeader');
@@ -67,10 +66,10 @@ function clickedDiv1 (){
 function clickedDiv2 (){
     //Visa rätt sektioner
     inlagdVaraRuta.classList.add('hidden');
-    formContainer.classList.add('hidden')
+    formContainer.classList.add('hidden');
     elementAfVaruLista.classList.remove('hidden')
     inlagdVaraRuta.classList.remove('visible');
-    inlagdVaraRuta.classList.add('hidden');
+    
     
     //Rätt hovereffekter
     div1.classList.add("hover:bg-slate-600");
@@ -182,11 +181,11 @@ function saveGoods() {
         Bild: formLaggaInVaror.formImageLink.value
     };
     //Denna använder apiets createmetod
-    api.create(goods).then((goods) => {
+    api.create(goods).then((result) => {
     inlagdVaraRuta.classList.add('visible');
     inlagdVaraRuta.classList.remove('hidden');
     inlagdVaraRuta.innerHTML = '';
-    inlagdVaraRuta.insertAdjacentHTML('beforeend', showAddedGoods(goods));
+    inlagdVaraRuta.insertAdjacentHTML('beforeend', showAddedGoods(result));
     formLaggaInVaror.formArticleName.value = '';
     formLaggaInVaror.formPrice.value = '';
     formLaggaInVaror.formProducer.value = '';
@@ -200,7 +199,6 @@ function saveGoods() {
 }
 //Funktion som visar alla varor.
 function showGoodsInventory() {
-
     api.getAll().then((goods) => {
 
         elementAfVaruLista.innerHTML = '';
