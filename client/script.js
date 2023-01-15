@@ -184,7 +184,9 @@ function showGoodsInventory() {
 }
 function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none h-fit">`; 
-    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    html += `<h3 class="font-semibold text-2xl">Namn: ${namn}</h3>`;
+    html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
+    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}:-kr</span></p>`
     html += `<p>Bild:  </p>`
     html += `<img src="${Bild}" class="h-2">`  
     
@@ -195,8 +197,10 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
 }
 
 function showGoods({id, namn, pris, Tillverkare, Bild}){
-    let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
-    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    let html =`<li id="elementAfVaruLista${id}" class="list-none rounded-md bg-gradient-to-b from-zinc-300 to-white">`; 
+    html += `<h3 class="font-semibold text-2xl">Namn: ${namn}</h3>`;
+    html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
+    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}:-kr</span></p>`
     html += `<p>Bild:  </p>`
     html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png">`
     html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
