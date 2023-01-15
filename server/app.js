@@ -80,8 +80,6 @@ app.delete('/varor/:id', async (req, res) =>{
   const parseFile = await fs.readFile('varor.json');
   const parsedVaror = JSON.parse(parseFile);
 
-
-  //console.log(parsedVaror)
   const id = req.params.id;
   console.log(id)
 
@@ -90,7 +88,7 @@ app.delete('/varor/:id', async (req, res) =>{
     return parsedVaror.id != id;
   });
   
-  //console.log(uppdateradeVaror);
+ 
   //En loop vilken kommer ifrån postanropet kommer lägga JSONobjekten i ordning.
   for (let index = 0; index < uppdateradeVaror.length; index++) {
     //console.log(parsedVaror[index].id);
@@ -99,7 +97,7 @@ app.delete('/varor/:id', async (req, res) =>{
     }
     
   }
-  //console.log(uppdateradeVaror);
+  
   //JSONlistan uppdateras i backend.
   await fs.writeFile('./varor.json', JSON.stringify(uppdateradeVaror));
         res.send(uppdateradeVaror);
