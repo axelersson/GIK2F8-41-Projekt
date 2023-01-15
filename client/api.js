@@ -46,7 +46,8 @@ class Api{
     }
     //Varje vara******** UPPDATERAS OM ÄNDRING!!**** tilldelas ett unikt id i backend och därför kan vi ta bort baserat på detta.
     remove(id) {
-        return fetch(`${this.url}/${id}`, {
+        console.log('inne i apifilen')
+        return fetch(`${this.url}/varor/${id}`, {
             method: 'DELETE'
           })
             .then((result) => result)

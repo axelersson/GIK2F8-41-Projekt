@@ -79,7 +79,7 @@ let formPriceValid = true;
 let formProducerValid = true;
 let formImageLinkValid = true;
 
-const api = new Api('http://localhost:5100/');
+const api = new Api('http://localhost:5100');
 
 //HÄR SKAPAR VI ALLA VALIDERINGSFUNKTIONER!!
 
@@ -126,7 +126,7 @@ function showGoodsInventory() {
 
         elementAfVaruLista.innerHTML = '';
         goods.forEach((goods) => { 
-            console.log(elementAfVaruLista + 'detta är element')
+
             elementAfVaruLista.insertAdjacentHTML('beforeend', showGoods(goods));
 
         });
@@ -148,6 +148,7 @@ function showGoods({id, namn, pris, Tillverkare, Bild}){
 
 function deleteVara(id) {
     api.remove(id).then(() => {
+        //TA BORT KOMMENTAR
         showGoodsInventory()
     });
 }

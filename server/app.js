@@ -79,20 +79,23 @@ app.post('/', async(req, res) => {
 })
 //Funktion för att ta bort varor. Använder express deletemetod.
 app.delete('/varor/:id', async (req, res) =>{
+  console.log(req)
   try {
+  console.log('hej')
   const parseFile = await fs.readFile('varor.json');
   const parsedVaror = JSON.parse(parseFile);
 
 
   //console.log(parsedVaror)
   const id = req.params.id;
+  console.log(id)
 
   //Samtliga objekt i JSONfilen som inte har det id:t som försöks tas bort kommer läggas in i en ny variabel.
   const uppdateradeVaror = parsedVaror.filter((parsedVaror) => {
     return parsedVaror.id != id;
   });
   
-  console.log(uppdateradeVaror);
+  //console.log(uppdateradeVaror);
   //En loop vilken kommer ifrån postanropet kommer lägga JSONobjekten i ordning.
   for (let index = 0; index < uppdateradeVaror.length; index++) {
     //console.log(parsedVaror[index].id);
