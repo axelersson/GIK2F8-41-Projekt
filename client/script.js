@@ -6,20 +6,23 @@
 //Eventlyssnare för validering av fälten i formulär
 
 //Validering för namn
-//formLaggaInVaror.formArticleName.addEventListener('keyup', (e) => validateName(e.target));
-//formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
+formLaggaInVaror.formArticleName.addEventListener('input', (e) => validateName(e.target));
+formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
+
+const varningsParagrafNamn = document.getElementById('varningsParagrafNamn')
+const varningsParagrafPris = document.getElementById('varningsParagrafPris')
 
 //Validering för pris
-//formLaggaInVaror.formPrice.addEventListener('input', (e) => validateField(e.target));
-//formLaggaInVaror.formPrice.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formPrice.addEventListener('input', (e) => validatePris(e.target));
+formLaggaInVaror.formPrice.addEventListener('blur', (e) => validatePris(e.target));
 
 //Validering för producent
-//formLaggaInVaror.formProducer.addEventListener('input', (e) => validateField(e.target));
-//formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formProducer.addEventListener('input', (e) => validateField(e.target));
+formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateField(e.target));
 
 //Validering för bildlänk
-//formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
-//formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
 
 //Eventlyssnare till submitknappen på formuläret
 formLaggaInVaror.addEventListener('submit', pressedSubmit);
@@ -80,9 +83,52 @@ let formPriceValid = true;
 let formProducerValid = true;
 let formImageLinkValid = true;
 
+
+
 const api = new Api('http://localhost:5100');
 
 //HÄR SKAPAR VI ALLA VALIDERINGSFUNKTIONER!!
+
+function validateName(field){
+    const namn = field;
+    if (namn.value.length < 3){        
+        varningsParagrafNamn.classList.add('visible')
+        varningsParagrafNamn.classList.remove('hidden')
+    }
+    if (namn.value.length > 2){        
+        varningsParagrafNamn.classList.add('hidden')
+        varningsParagrafNamn.classList.remove('visible')
+    }
+    if (namn.value.length > 50){        
+        varningsParagrafNamn.classList.add('visible')
+        varningsParagrafNamn.classList.remove('hidden')
+    }
+}
+function validatePris(field){
+    const pris = field;
+    const parsePris = pris.value;
+    const maxDecimaler = new Intl.NumberFormat('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2, minimumSignificantDigits: 3 }).format(parsePris);
+    console.log(maxDecimaler)
+    /*pris.value.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4
+    });*/
+    console.log();
+    //console.log(parsePris)
+    if (maxDecimaler.length < 3){        
+        varningsParagrafPris.classList.add('visible')
+        varningsParagrafPris.classList.remove('hidden')
+        varningsParagrafPris.innerHTML = 'För få siffror eller för många decimaler'
+    }
+    if (pris.value.length > 2){        
+        varningsParagrafPris.classList.add('hidden')
+        varningsParagrafPris.classList.remove('visible')
+    }
+}
+
+/*
+varningsParagrafPris
+*/
 
 //Funktion för att spara fomuläret
 function pressedSubmit(e) {
@@ -140,7 +186,7 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none h-fit">`; 
     html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
     html += `<p>Bild:  </p>`
-    html += `<img src="${Bild}" alt="Kunde inte hitta bild för aktuell vara" class="h-2">`  
+    html += `<img src="${Bild}" class="h-2">`  
     
     html += `</li>`;
 
@@ -152,7 +198,7 @@ function showGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
     html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
     html += `<p>Bild:  </p>`
-    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`
+    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png">`
     html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
     
     html += `</li>`;
