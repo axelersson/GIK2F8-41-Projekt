@@ -5,29 +5,37 @@
 //GÖR DESSA SIST!
 //Eventlyssnare för validering av fälten i formulär
 
+let formArticleNameValid = true;
+let formPriceValid = true;
+let formProducerValid = true;
+let formImageLinkValid = true;
+
 //Validering för namn
 formLaggaInVaror.formArticleName.addEventListener('input', (e) => validateName(e.target));
 formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
 
 const varningsParagrafNamn = document.getElementById('varningsParagrafNamn')
 const varningsParagrafPris = document.getElementById('varningsParagrafPris')
+const varningsParagrafProducent = document.getElementById('varningsParagrafProducent')
+const varningsParagrafForm = document.getElementById('varningsParagrafForm')
+
 
 //Validering för pris
 formLaggaInVaror.formPrice.addEventListener('input', (e) => validatePris(e.target));
 formLaggaInVaror.formPrice.addEventListener('blur', (e) => validatePris(e.target));
 
 //Validering för producent
-formLaggaInVaror.formProducer.addEventListener('input', (e) => validateField(e.target));
-formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateField(e.target));
+formLaggaInVaror.formProducer.addEventListener('input', (e) => validateProducer(e.target));
+formLaggaInVaror.formProducer.addEventListener('blur', (e) => validateProducer(e.target));
 
 //Validering för bildlänk
-formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
-formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+//formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
+//formLaggaInVaror.formImageLink.addEventListener('blur', (e) => validateField(e.target));
 
 //Eventlyssnare till submitknappen på formuläret
-formLaggaInVaror.addEventListener('submit', pressedSubmit);
+formLaggaInVaror.addEventListener('submit', pressedSubmit, validatePris(formLaggaInVaror.formPrice));
 
-
+//
 const elementAfVaruLista = document.getElementById('varuLista');
 const inlagdVaraRuta = document.getElementById('inlagdVaraRuta');
 const inlagdVaraHeader = document.getElementById('inlagdVaraHeader');
@@ -78,10 +86,6 @@ function clickedDiv2 (){
 }
 
 
-let formArticleNameValid = true;
-let formPriceValid = true;
-let formProducerValid = true;
-let formImageLinkValid = true;
 
 
 
@@ -91,39 +95,63 @@ const api = new Api('http://localhost:5100');
 
 function validateName(field){
     const namn = field;
-    if (namn.value.length < 3){        
+    if (namn.value.length < 3){     
+        formArticleNameValid = false;   
         varningsParagrafNamn.classList.add('visible')
         varningsParagrafNamn.classList.remove('hidden')
     }
-    if (namn.value.length > 2){        
+    if (namn.value.length > 2){   
+        formArticleNameValid = true;        
         varningsParagrafNamn.classList.add('hidden')
         varningsParagrafNamn.classList.remove('visible')
     }
-    if (namn.value.length > 50){        
+    if (namn.value.length > 14){
+        formArticleNameValid = false;        
         varningsParagrafNamn.classList.add('visible')
         varningsParagrafNamn.classList.remove('hidden')
     }
+    
+
 }
 function validatePris(field){
-    const pris = field;
-    const parsePris = pris.value;
-    const maxDecimaler = new Intl.NumberFormat('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2, minimumSignificantDigits: 3 }).format(parsePris);
-    console.log(maxDecimaler)
-    /*pris.value.toLocaleString('en-US', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 4
-    });*/
-    console.log();
-    //console.log(parsePris)
-    if (maxDecimaler.length < 3){        
+    const producent = field;
+    const varningsParagrafProducent = producent.value;
+    console.log(varningsParagrafProducent)
+    if (varningsParagrafProducent.length == 0){   
+        formPriceValid = false;      
         varningsParagrafPris.classList.add('visible')
         varningsParagrafPris.classList.remove('hidden')
-        varningsParagrafPris.innerHTML = 'För få siffror eller för många decimaler'
     }
-    if (pris.value.length > 2){        
+    if (varningsParagrafProducent.length >= 1){       
+        formPriceValid = true; 
         varningsParagrafPris.classList.add('hidden')
         varningsParagrafPris.classList.remove('visible')
     }
+    if (varningsParagrafProducent.length > 50){ 
+        formPriceValid = false;          
+        varningsParagrafPris.classList.add('visible')
+        varningsParagrafPris.classList.remove('hidden')
+    }
+}
+function validateProducer(field){
+    const pris = field;
+    const parsePris = pris.value;
+    if (parsePris.length == 0){   
+        formProducerValid = false;      
+        varningsParagrafProducent.classList.add('visible')
+        varningsParagrafProducent.classList.remove('hidden')
+    }
+    if (parsePris.length >= 1){       
+        formProducerValid = true; 
+        varningsParagrafProducent.classList.add('hidden')
+        varningsParagrafProducent.classList.remove('visible')
+    }
+    if (parsePris.length > 50){ 
+        formProducerValid = false;          
+        varningsParagrafProducent.classList.add('visible')
+        varningsParagrafProducent.classList.remove('hidden')
+    }
+
 }
 
 /*
@@ -136,8 +164,17 @@ function pressedSubmit(e) {
     e.preventDefault();
 
     //LÄGG IN SAMTLIGA VALIDERINGSFUNKTIONER HÄR!!!!!!
-
-    saveGoods();
+    if (formArticleNameValid && formPriceValid && formProducerValid){
+        console.log('allt godkänt')
+        varningsParagrafForm.classList.add('hidden')
+        varningsParagrafForm.classList.remove('visible')
+        saveGoods();
+    }
+    else {
+        varningsParagrafForm.classList.add('visible')
+        varningsParagrafForm.classList.remove('hidden')
+    }
+    
     console.log('nu körs saveGoods')
 }
 
@@ -147,7 +184,7 @@ function saveGoods() {
     //preventDefault();
     const goods ={
         namn: formLaggaInVaror.formArticleName.value,
-        pris: formLaggaInVaror.formPrice.value,
+        pris: (priset = new Intl.NumberFormat('sv-US', { style: 'currency', currency: 'SEK' }).format(formLaggaInVaror.formPrice.value)),
         Tillverkare: formLaggaInVaror.formProducer.value,
         Bild: formLaggaInVaror.formImageLink.value
     };
@@ -186,7 +223,7 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none h-fit">`; 
     html += `<h3 class="font-semibold text-2xl">Namn: ${namn}</h3>`;
     html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
-    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}:-kr</span></p>`
+    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}</span></p>`
     html += `<p>Bild:  </p>`
     html += `<img src="${Bild}" class="h-2">`  
     
@@ -200,7 +237,7 @@ function showGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none rounded-md bg-gradient-to-b from-zinc-300 to-white">`; 
     html += `<h3 class="font-semibold text-2xl">Namn: ${namn}</h3>`;
     html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
-    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}:-kr</span></p>`
+    html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}</span></p>`
     html += `<p>Bild:  </p>`
     html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png">`
     html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
