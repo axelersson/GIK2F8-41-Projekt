@@ -150,9 +150,9 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
 
 function showGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
-    html += `<h3>Namn: ${namn} Pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
     html += `<p>Bild:  </p>`
-    html += `<img src="${Bild}" alt="Kunde inte hitta bild för aktuell vara" class="max-h-3.5">`
+    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`
     html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
     
     html += `</li>`;
