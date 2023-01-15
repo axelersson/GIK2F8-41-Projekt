@@ -110,39 +110,40 @@ function validateName(field){
 
 }
 function validatePris(field){
-    const producent = field;
-    const varningsParagrafProducent = producent.value;
-    console.log(varningsParagrafProducent)
-    if (varningsParagrafProducent.length == 0){   
+    const pris = field;
+    const parsePris = pris.value;
+    console.log(parsePris)
+    if (parsePris.length == 0){   
         formPriceValid = false;      
         varningsParagrafPris.classList.add('visible')
         varningsParagrafPris.classList.remove('hidden')
     }
-    if (varningsParagrafProducent.length >= 1){       
+    if (parsePris.length >= 1){       
         formPriceValid = true; 
         varningsParagrafPris.classList.add('hidden')
         varningsParagrafPris.classList.remove('visible')
     }
-    if (varningsParagrafProducent.length > 14){ 
+    if (parsePris.length > 14){ 
         formPriceValid = false;          
         varningsParagrafPris.classList.add('visible')
         varningsParagrafPris.classList.remove('hidden')
     }
 }
 function validateProducer(field){
-    const pris = field;
-    const parsePris = pris.value;
-    if (parsePris.length == 0){   
+    //varningsParagrafProducent
+    const producer = field;
+    const parseProducer = producer.value;
+    if (parseProducer.length == 0){   
         formProducerValid = false;      
         varningsParagrafProducent.classList.add('visible')
         varningsParagrafProducent.classList.remove('hidden')
     }
-    if (parsePris.length >= 1){       
+    if (parseProducer.length >= 1){       
         formProducerValid = true; 
         varningsParagrafProducent.classList.add('hidden')
         varningsParagrafProducent.classList.remove('visible')
     }
-    if (parsePris.length > 50){ 
+    if (parseProducer.length > 50){ 
         formProducerValid = false;          
         varningsParagrafProducent.classList.add('visible')
         varningsParagrafProducent.classList.remove('hidden')

@@ -10,7 +10,7 @@ class Api{
         //Här deklareras att inparametern kommer uppdatera apiklassens url-variabel.
         this.url = url;
     }
-
+    
 
     //Skapandet av de CRUD-metoder som kommer att användas.
     
