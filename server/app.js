@@ -27,22 +27,18 @@ app
   });
 
 //Getanrop 
-app.get('/', async (req, res) => {
+app.get('/varor', async (req, res) => {
     console.log('here')
     const parseFile = await fs.readFile('varor.json');
     console.log(JSON.parse(parseFile))
     res.send(parseFile)
 });
 
-app.post('/', async(req, res) => {
+app.post('/varor', async(req, res) => {
     try {
-        //console.log('hej')
-
         //Request som skickas från frontend ska skickas i JSON-format så att det kan läggas till här bland de andra varorna.
         const nyVara = req.body;
-        //console.log(inkommenVara)
-        //const  = JSON.parse(inkommenVara)
-        //console.log(nyVara + 'här är nyVara')
+
         //Sparar ner samtliga varor i varor.json
         const parseFile = await fs.readFile('varor.json');
         //Konverterar varorna till rätt format.
@@ -62,7 +58,6 @@ app.post('/', async(req, res) => {
             
           }
         }
-        //console.log(parsedVaror);
         //Tilldelar ett nytt id till nya JSON-objektet, denna bygger vidare på sorteringen som gjorts tidigare
         const laggaInNyVara = { id:(parsedVaror.length + 1), ...nyVara };
         // Stort frågetecken

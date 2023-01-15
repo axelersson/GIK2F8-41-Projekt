@@ -192,6 +192,7 @@ function saveGoods() {
     formLaggaInVaror.formImageLink.value = '';
     inlagdVaraHeader.classList.remove('hidden');
     inlagdVaraHeader.classList.add('visible');
+    validatePris(formLaggaInVaror.formPrice)
 
     });
     
