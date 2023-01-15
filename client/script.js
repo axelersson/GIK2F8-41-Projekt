@@ -4,21 +4,21 @@
 
 //GÖR DESSA SIST!
 //Eventlyssnare för validering av fälten i formulär
-
+//Variabler till validering
 let formArticleNameValid = true;
 let formPriceValid = true;
 let formProducerValid = true;
 let formImageLinkValid = true;
 
-//Validering för namn
-formLaggaInVaror.formArticleName.addEventListener('input', (e) => validateName(e.target));
-formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
-
+//Felmeddelandet till formulär
 const varningsParagrafNamn = document.getElementById('varningsParagrafNamn')
 const varningsParagrafPris = document.getElementById('varningsParagrafPris')
 const varningsParagrafProducent = document.getElementById('varningsParagrafProducent')
 const varningsParagrafForm = document.getElementById('varningsParagrafForm')
 
+//Validering för namn
+formLaggaInVaror.formArticleName.addEventListener('input', (e) => validateName(e.target));
+formLaggaInVaror.formArticleName.addEventListener('blur', (e) => validateName(e.target));
 
 //Validering för pris
 formLaggaInVaror.formPrice.addEventListener('input', (e) => validatePris(e.target));
@@ -85,10 +85,6 @@ function clickedDiv2 (){
     showGoodsInventory()
 }
 
-
-
-
-
 const api = new Api('http://localhost:5100');
 
 //HÄR SKAPAR VI ALLA VALIDERINGSFUNKTIONER!!
@@ -105,7 +101,7 @@ function validateName(field){
         varningsParagrafNamn.classList.add('hidden')
         varningsParagrafNamn.classList.remove('visible')
     }
-    if (namn.value.length > 14){
+    if (namn.value.length > 50){
         formArticleNameValid = false;        
         varningsParagrafNamn.classList.add('visible')
         varningsParagrafNamn.classList.remove('hidden')
@@ -127,7 +123,7 @@ function validatePris(field){
         varningsParagrafPris.classList.add('hidden')
         varningsParagrafPris.classList.remove('visible')
     }
-    if (varningsParagrafProducent.length > 50){ 
+    if (varningsParagrafProducent.length > 14){ 
         formPriceValid = false;          
         varningsParagrafPris.classList.add('visible')
         varningsParagrafPris.classList.remove('hidden')
@@ -153,10 +149,6 @@ function validateProducer(field){
     }
 
 }
-
-/*
-varningsParagrafPris
-*/
 
 //Funktion för att spara fomuläret
 function pressedSubmit(e) {
@@ -225,7 +217,7 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
     html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
     html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}</span></p>`
     html += `<p>Bild:  </p>`
-    html += `<img src="${Bild}" class="h-2">`  
+    html += `<img src="${Bild}" class="max-h-40">`  
     
     html += `</li>`;
 
@@ -239,8 +231,8 @@ function showGoods({id, namn, pris, Tillverkare, Bild}){
     html += `<p class="font-medium">Tillverkare: ${Tillverkare}</p>`
     html += `<p class="font-medium w-fit">Pris: <span class="font-medium text-red-600 bg-yellow-300">${pris}</span></p>`
     html += `<p>Bild:  </p>`
-    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png">`
-    html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
+    html += `<img src="${Bild}" class="max-h-40">`
+    html += `<button onclick="deleteVara(${id})" class="inline-block bg-zinc-400 text-xs hover:bg-zinc-100 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
     
     html += `</li>`;
 
