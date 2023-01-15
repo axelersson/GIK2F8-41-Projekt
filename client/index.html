@@ -11,36 +11,36 @@
     <main id="root" class="bg-gradient-to-br from-purple-300 to-cyan-400 h-fit min-h-screen">
         <h1 class="headerClass m-auto pt-20 pb-5 text-center text-5xl">Lista på produkter</h1>
         <section class="w-2/6 m-auto bg-transparent h-max">
-                <div class="flex">
+                <div class="flex bg-transparent ">
                     <section class="divContainer bg-transparent mt-auto h-full w-full">
-                        <div id="clickableDiv1" class=" bg-slate-200 rounded-tr-lg text-center h-full cursor-pointer"><h1>Lägg in ny vara</h1>
+                        <div id="clickableDiv1" class=" bg-slate-200 rounded-t-xl text-center h-full cursor-pointer"><h1>Lägg in ny vara</h1>
                         </div>
                         
                     </section>
                     <section class="divContainer bg-transparent mt-auto h-full w-full">
-                        <div id="clickableDiv2" class="hover:bg-slate-600 div2 bg-zinc-400 rounded-tl-lg text-center h-full cursor-pointer">Visa nuvarande sortiment</div>
+                        <div id="clickableDiv2" class="hover:bg-slate-600 div2 bg-zinc-400 rounded-t-xl text-center h-full cursor-pointer">Visa nuvarande sortiment</div>
                     </section>
                 </div>
-                  <section id="formContainer" class="col-span-3 bg-slate-200 grid-cols-2 grid-rows-1">
+                  <section id="formContainer" class="bg-slate-200">
                     <!--Gör en grid för dessa där varje barn har en egen rad -->
                     <form id="formLaggaInVaror" 
                           name="formLaggaInVaror">
                         <!--- ---->
-                        <section class="bg-transparent p-2">
-                            <label for="formArticleName">Artikelnamn:</label>
-                            <input type="text" id="formArticleName" name="formArticleName" >
+                        <section class="bg-transparent p-2 flex content-end">
+                            <label for="formArticleName" class="m-auto">Artikelnamn:</label>
+                            <input type="text" id="formArticleName" name="formArticleName" class="w-6/12 ml-auto">
                         </section>
-                        <section class="p-2">
-                            <label for="formPrice">Pris:</label>
-                            <input type="text" id="formPrice" name="formPrice">
+                        <section class="p-2 flex">
+                            <label for="formPrice" class="m-auto">Pris:</label>
+                            <input type="text" id="formPrice" name="formPrice" class="w-6/12 ml-auto">
                         </section>  
-                        <section class="p-2">
-                            <label for="formProducer">Tillverkare:</label>
-                            <input type="text" id="formProducer" name="formProducer">
+                        <section class="p-2 flex">
+                            <label for="formProducer" class="m-auto">Tillverkare:</label>
+                            <input type="text" id="formProducer" name="formProducer" class="w-6/12 ml-auto">
                         </section>  
-                        <section class="p-2">
-                            <label for="formImageLink">Bildlänk:</label>
-                            <input type="text" id="formImageLink" name="formImageLink">
+                        <section class="p-2 flex">
+                            <label for="formImageLink" class="m-auto">Bildlänk:</label>
+                            <input type="text" id="formImageLink" name="formImageLink" class="w-6/12 ml-auto">
                         </section>
                         <div class="align-center bg-transparent p-2">
                             <button name="formSubmit" 
@@ -56,7 +56,8 @@
                     <!--Här kommer vi lägga in den dynamiskt genererade varulistan-->
                 </ul>
             </section>
-            <div id ="inlagdVaraRuta" class="h-fit w-2/6 bg-slate-200 mx-auto hidden"><h2 class="m-auto w-2/6">Inlagd vara:</h2></div>
+            <h2 class="m-auto w-2/6 text-center hidden" id="inlagdVaraHeader">Inlagd vara:</h2>
+            <div id ="inlagdVaraRuta" class="h-fit w-2/6 bg-slate-200 mx-auto hidden"></div>
     </main>
     <script src="Api.js"></script>
     <script src="script.js"></script>

@@ -27,6 +27,7 @@ formLaggaInVaror.addEventListener('submit', pressedSubmit);
 
 const elementAfVaruLista = document.getElementById('varuLista');
 const inlagdVaraRuta = document.getElementById('inlagdVaraRuta');
+const inlagdVaraHeader = document.getElementById('inlagdVaraHeader');
 
 const formContainer = document.getElementById('formContainer');
 
@@ -114,6 +115,8 @@ function saveGoods() {
     formLaggaInVaror.formPrice.value = '';
     formLaggaInVaror.formProducer.value = '';
     formLaggaInVaror.formImageLink.value = '';
+    inlagdVaraHeader.classList.remove('hidden');
+    inlagdVaraHeader.classList.add('visible');
 
     });
     
@@ -127,15 +130,17 @@ function showGoodsInventory() {
         goods.forEach((goods) => { 
 
             elementAfVaruLista.insertAdjacentHTML('beforeend', showGoods(goods));
+            inlagdVaraHeader.classList.remove('visible');
+            inlagdVaraHeader.classList.add('hidden');
 
         });
     });
 }
 function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
-    let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
+    let html =`<li id="elementAfVaruLista${id}" class="list-none h-fit">`; 
     html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
     html += `<p>Bild:  </p>`
-    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`  
+    html += `<img src="${Bild}" alt="Kunde inte hitta bild för aktuell vara" class="h-2">`  
     
     html += `</li>`;
 
@@ -145,9 +150,9 @@ function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
 
 function showGoods({id, namn, pris, Tillverkare, Bild}){
     let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
-    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    html += `<h3>Namn: ${namn} Pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
     html += `<p>Bild:  </p>`
-    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`
+    html += `<img src="${Bild}" alt="Kunde inte hitta bild för aktuell vara" class="max-h-3.5">`
     html += `<button onclick="deleteVara(${id})" class="inline-block bg-amber-500 text-xs text-amber-900 border border-white px-3 py-1 rounded-md ml-2">Ta bort</button>`    
     
     html += `</li>`;
@@ -158,7 +163,6 @@ function showGoods({id, namn, pris, Tillverkare, Bild}){
 
 function deleteVara(id) {
     api.remove(id).then(() => {
-        //TA BORT KOMMENTAR
         showGoodsInventory()
     });
 }
