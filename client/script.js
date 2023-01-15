@@ -109,7 +109,7 @@ function saveGoods() {
     inlagdVaraRuta.classList.add('visible');
     inlagdVaraRuta.classList.remove('hidden');
     inlagdVaraRuta.innerHTML = '';
-    inlagdVaraRuta.insertAdjacentHTML('beforeend', showGoods(goods));
+    inlagdVaraRuta.insertAdjacentHTML('beforeend', showAddedGoods(goods));
     formLaggaInVaror.formArticleName.value = '';
     formLaggaInVaror.formPrice.value = '';
     formLaggaInVaror.formProducer.value = '';
@@ -121,7 +121,6 @@ function saveGoods() {
 //Funktion som visar alla varor.
 function showGoodsInventory() {
 
-    console.log('rendering');
     api.getAll().then((goods) => {
 
         elementAfVaruLista.innerHTML = '';
@@ -131,6 +130,17 @@ function showGoodsInventory() {
 
         });
     });
+}
+function showAddedGoods({id, namn, pris, Tillverkare, Bild}){
+    let html =`<li id="elementAfVaruLista${id}" class="list-none">`; 
+    html += `<h3>Namn: ${namn} pris: ${pris}kr Tillverkare: ${Tillverkare}</h3>`;
+    html += `<p>Bild:  </p>`
+    html += `<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Generic_football.png" alt="Kunde inte hitta bild för aktuell vara">`  
+    
+    html += `</li>`;
+
+    return html;
+  
 }
 
 function showGoods({id, namn, pris, Tillverkare, Bild}){
