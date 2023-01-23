@@ -22,7 +22,7 @@ class Api{
         console.log(`Sending ${JSONData} to ${this.url}`)
 
         //Här skapas requestobjektet för create/postmetoden
-        const request = new Request(this.url, {
+        const request = new Request(this.url+`/varor`, {
             method: 'POST',
             body: JSONData,
             headers: {
@@ -40,7 +40,7 @@ class Api{
     }
     //getAllmetod, vi behöver ingen funktionalitet för att hämta enstaka objekt
     getAll() {
-        return fetch(this.url)
+        return fetch(this.url +`/varor`)
         .then((result) => result.json())
         .then((data) => data)
         .catch((err) => console.log(err));
